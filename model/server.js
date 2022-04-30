@@ -10,6 +10,7 @@ class Server {
 
     this.paths = {
       auth: "/api/auth",
+      event: "/api/events",
     };
     
      //Conexion a base de datos
@@ -40,6 +41,7 @@ class Server {
   routers() {
 
     this.app.use(this.paths.auth, require("../routes/auth"));
+    this.app.use(this.paths.event, require("../routes/event"));
 
   }
 

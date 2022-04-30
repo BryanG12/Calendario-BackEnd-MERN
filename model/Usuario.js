@@ -15,6 +15,10 @@ const UsuarioSchema = new Schema({
     type: String,
     required: [true, 'El password es obligatorio']
   },
+  estado:{
+    type:Boolean,
+    default:true
+  }
 })
 
 
