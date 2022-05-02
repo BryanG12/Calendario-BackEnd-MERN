@@ -40,9 +40,8 @@ class Server {
   }
 
   routers() {
-    this.app.use(this.paths.public, (req, res)=> {
-      res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-    });
+    //ruta que redirige a la carpeta publica
+    this.app.get('*', (express.static('public')));
 
     this.app.use(this.paths.auth, require("../routes/auth"));
     this.app.use(this.paths.event, require("../routes/event"));
