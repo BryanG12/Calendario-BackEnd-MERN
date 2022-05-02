@@ -28,8 +28,6 @@ router.post('/',[
 router.put('/:id',[
   check('id', 'No es un id valido').isMongoId(),
   check('id').custom( existeEventoId),
-  check('user', 'No es un usuario valido').isMongoId(),
-  check('user').custom( existeUsuarioId),
   check('title', 'El titulo es necesario').not().isEmpty(),
   check('start', 'La fecha de inicio es necesaria').custom(isDate),
   check('end', 'La fecha de fin es necesaria').not().isEmpty(),

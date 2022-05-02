@@ -30,7 +30,8 @@ const crearUsuario = async(req=request, res=response) => {
 
     res.status(201).json({
       ok:true,
-      msg: 'registro',
+      uid: usuario.id,
+      name: usuario.name,
       token
     })
     
@@ -91,16 +92,30 @@ const loginUsuario = async(req=request, res=response) => {
 
 const revalidarToken = async (req=request, res=response) => {
   
-  const uid = req.uid;
-  const name = req.name;
 
-  //Generar Nuevo token
-  const token =  await generarJWT(uid,  name );
-
-  res.json({
-    msg: 'renew',
-    nuevoToken: token
-  })
+  try {
+    
+    const uid = req.uid;
+    const name = req.name;
+  
+  
+  
+    //Generar Nuevo token
+    const token =  await generarJWT(uid,  name );
+  
+    res.json({
+      ok: true,
+      uid,
+      name,
+      token
+    })
+    
+  } catch (error) {
+    res.status(500).json({
+      ok:false,
+      msg: 'Error al crear usuario',
+    })
+  }
 
 }
 
